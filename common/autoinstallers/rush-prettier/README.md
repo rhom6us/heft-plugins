@@ -1,0 +1,1 @@
+`rush update-autoinstaller --name rush-prettier`
