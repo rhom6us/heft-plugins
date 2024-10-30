@@ -28,10 +28,7 @@
      * Designate categories with whatever granularity is appropriate for your review process,
      * or you could just have a single category called "default".
      */
-    "reviewCategories": [
-      "web-ui",
-      "web-build"
-    ],
+    "reviewCategories": ["web-ui", "web-build"],
     "ignoredNpmScopes": ["@types"]
   },
 
@@ -66,7 +63,7 @@
     /**
      * The commit message to use when committing changefiles during 'rush change --commit'
      */
-     "changefilesCommitMessage": "Rush change"
+    "changefilesCommitMessage": "Rush change"
   },
 
   "repository": {
@@ -77,7 +74,9 @@
   // Event hooks are customized script actions that Rush executes when specific events occur
   "eventHooks": {
     // "rush install" or "rush update"
-    "preRushInstall": [ /* "common/scripts/pre-rush-install.js" */],
+    "preRushInstall": [
+      /* "common/scripts/pre-rush-install.js" */
+    ],
     "postRushInstall": [],
 
     // "rush build" or "rush rebuild"
@@ -136,7 +135,7 @@
       "reviewCategory": "production",
       "decoupledLocalDependencies": [
         // "my-toolchain"
-      ],
+      ]
 
       // `rush check` checks each project's package.json files and ensures that all dependencies are of the same version throughout the repository.
       // "skipRushCheck": false,
@@ -178,14 +177,14 @@
       "packageName": "my-controls",
       "projectFolder": "libraries/my-controls",
       "reviewCategory": "production",
-      "tags": [ "frontend-team" ]
+      "tags": ["frontend-team"]
     },
 
     {
       "packageName": "@rhom6us/heft-vite-plugin",
       "projectFolder": "tools/my-toolchain",
       "reviewCategory": "tools",
-      "tags": [ "tools" ]
+      "tags": ["tools"]
     }
   ]
 }
