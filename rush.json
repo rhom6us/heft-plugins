@@ -9,7 +9,7 @@
    * If you upgrade to a new major version of Rush, you should replace the "v5" path segment in the "$schema" field for all your Rush config files.  This will ensure correct error-underlining and tab-completion for editors such as VS Code.
    */
   "rushVersion": "5.138.0",
-  "pnpmVersion": "9.12.2",
+  "pnpmVersion": "9.12.3",
   "nodeSupportedVersionRange": ">=18.20.3 <19.0.0 || >=20.14.0 <21.0.0",
   "nodeSupportedVersionInstructions": "Run 'nvm use 20 (nvm use lts/*)' to switch to the expected node version.",
   "projectFolderMinDepth": 2,
@@ -116,75 +116,55 @@
    * 3. It's useful to have a centralized inventory of all projects and their important metadata.
    */
   "projects": [
-    {
-      "packageName": "my-app",
-      "projectFolder": "apps/my-app",
+    //   {
+    // "packageName": "my-app",
+    // "projectFolder": "apps/my-app",
+    // "reviewCategory": "production",
+    // "decoupledLocalDependencies": [
+    //   // "my-toolchain"
+    // ]
+    // `rush check` checks each project's package.json files and ensures that all dependencies are of the same version throughout the repository.
+    // "skipRushCheck": false,
 
-      /**
-       * This field is only used if "subspacesEnabled" is true in subspaces.json.
-       * It specifies the subspace that this project belongs to.  If omitted, then the
-       * project belongs to the "default" subspace.
-       */
-      // "subspaceName": "my-subspace",
+    /**
+     * affects Rush change and publish workflows. The default value is false.
+     * NOTE: "versionPolicyName" and "shouldPublish" are alternatives; you cannot specify them both.
+     */
+    // "shouldPublish": false,
 
-      /**
-       * An optional category for usage in the "browser-approved-packages.json"
-       * and "nonbrowser-approved-packages.json" files.  The value must be one of the
-       * strings from the "reviewCategories" defined above.
-       */
-      "reviewCategory": "production",
-      "decoupledLocalDependencies": [
-        // "my-toolchain"
-      ]
+    /**
+     * `rush publish`  will publish the subfolder instead of the project folder.
+     * Must contain its own package.json file.
+     */
+    // "publishFolder": "temp/publish",
 
-      // `rush check` checks each project's package.json files and ensures that all dependencies are of the same version throughout the repository.
-      // "skipRushCheck": false,
-
-      /**
-       * A flag indicating that changes to this project will be published to npm, which affects
-       * the Rush change and publish workflows. The default value is false.
-       * NOTE: "versionPolicyName" and "shouldPublish" are alternatives; you cannot specify them both.
-       */
-      // "shouldPublish": false,
-
-      /**
-       * Facilitates postprocessing of a project's files prior to publishing.
-       *
-       * If specified, the "publishFolder" is the relative path to a subfolder of the project folder.
-       * The "rush publish" command will publish the subfolder instead of the project folder.  The subfolder
-       * must contain its own package.json file, which is typically a build output.
-       */
-      // "publishFolder": "temp/publish",
-
-      /**
-       * An optional version policy associated with the project.  Version policies are defined
-       * in "version-policies.json" file.  See the "rush publish" documentation for more info.
-       * NOTE: "versionPolicyName" and "shouldPublish" are alternatives; you cannot specify them both.
-       */
-      // "versionPolicyName": "",
-
-      /**
-       * An optional set of custom tags that can be used to select this project.  For example,
-       * adding "my-custom-tag" will allow this project to be selected by the
-       * command "rush list --only tag:my-custom-tag".  The tag name must be one or more words
-       * separated by hyphens or slashes, where a word may contain lowercase ASCII letters, digits,
-       * ".", and "@" characters.
-       */
-      // "tags": [ "1.0.0-release", "frontend-team" ]
-    },
+    /**
+     * An optional version policy associated with the project.  Version policies are defined
+     * in "version-policies.json" file.  See the "rush publish" documentation for more info.
+     * NOTE: "versionPolicyName" and "shouldPublish" are alternatives; you cannot specify them both.
+     */
+    // "versionPolicyName": "",
+    // "tags": [ "1.0.0-release", "frontend-team" ]
+    // },
 
     {
-      "packageName": "my-controls",
-      "projectFolder": "libraries/my-controls",
-      "reviewCategory": "production",
-      "tags": ["frontend-team"]
+      "packageName": "@rhom6us/heft-storybook-plugin",
+      "projectFolder": "packages/heft-storybook-plugin",
+      "reviewCategory": "web-build",
+      "tags": ["heft-plugin", "storybook"],
+
+      // "versionPolicyName": "production",
+      "shouldPublish": true
     },
 
     {
       "packageName": "@rhom6us/heft-vite-plugin",
-      "projectFolder": "tools/my-toolchain",
-      "reviewCategory": "tools",
-      "tags": ["tools"]
+      "projectFolder": "packages/heft-vite-plugin",
+      "reviewCategory": "web-build",
+      "tags": ["heft-plugin", "vite"],
+
+      // "versionPolicyName": "production",
+      "shouldPublish": true
     }
   ]
 }
